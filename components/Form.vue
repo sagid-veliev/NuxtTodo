@@ -25,132 +25,83 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    @mixin label() {
+        font-family: $font;
+        font-size: 10px;
+        letter-spacing: -0.02em;
+        color: #49485E; 
+    }
+    @mixin input() {
+        height: 36px;
+        background: #FFFEFB;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        border: none;
+        font-family: $font;
+        font-size: 12px;
+        line-height: $line-height;
+        padding: 10px 16px;
+        &::placeholder {
+            color: $font-color;
+        }
+    }
+    @mixin block() {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
     .container-form {
         display: grid;
         grid-template-rows: 53px 125px repeat(2, 53px);
-        grid-gap: 16px;
+        grid-gap: $gap;
         width: 100%;
         margin: 24px;
         &_name {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            @include block();
             &_label {
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 10px;
-                letter-spacing: -0.02em;
-                color: #49485E;
+                @include label();
             }
             &_input {
-                height: 36px;
-                background: #FFFEFB;
-                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                border-radius: 4px;
-                border: none;
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 12px;
-                line-height: 15px;
-                padding: 10px 16px;
-                color: #B4B4B4;
-                &::placeholder {
-                    color: #B4B4B4;
-                }
+                @include input();
             }
         }
         &_description {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            @include block();
             &_label {
-                 color:red;
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 10px;
-                letter-spacing: -0.02em;
-                color: #49485E;
+               @include label();
             }
             &_input {
                 background: #FFFEFB;
                 box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
                 border-radius: 4px;
                 height: 108px;
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
+                font-family: $font;
                 font-size: 12px;
-                line-height: 15px;
-                padding: 10px 16px;
-                color: #B4B4B4;
+                line-height: $line-height;
+                padding: 10px $gap;
                 border: none;
                 resize: none;
                 &::placeholder {
-                    color: #B4B4B4;
+                    color: $font-color;
                 }
             }
         }
         &_image {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            @include block();
             &_label {
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 10px;
-                letter-spacing: -0.02em;
-                color: #49485E;
+                @include label();
             }
             &_input {
-                height: 36px;
-                background: #FFFEFB;
-                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                border-radius: 4px;
-                border: none;
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 12px;
-                line-height: 15px;
-                padding: 10px 16px;
-                color: #B4B4B4;
-                &::placeholder {
-                    color: #B4B4B4;
-                }
+                @include input();
             }
         }
         &_price {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            @include block();
             &_label {
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 10px;
-                letter-spacing: -0.02em;
-                color: #49485E;
+                @include label();
             }
             &_input {
-                height: 36px;
-                background: #FFFEFB;
-                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                border-radius: 4px;
-                border: none;
-                font-family: 'Source Sans Pro';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 12px;
-                line-height: 15px;
-                padding: 10px 16px;
-                color: #B4B4B4;
-                &::placeholder {
-                    color: #B4B4B4;
-                }
+                @include input();
             }
         }
         &_button {
@@ -161,10 +112,10 @@ export default {
             font-style: normal;
             font-weight: 600;
             font-size: 12px;
-            line-height: 15px;
+            line-height: $line-height;
             text-align: center;
             letter-spacing: -0.02em;
-            color: #B4B4B4;
+            color: $font-color;
         }
     }    
 </style>

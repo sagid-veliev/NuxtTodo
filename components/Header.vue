@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <nav class="header">
         <div class="header_title">
             <h1>Добавление товара</h1>
         </div>
@@ -11,7 +11,7 @@
                 <div class="header_select-wrapper_select_icon"></div>
             </div>
         </div>
-    </div>
+    </nav>
 </template>
 
 <script>
@@ -49,14 +49,14 @@ export default {
                 align-items: $block-center;
                 justify-content: space-between;
                 width: 90px;
-                height: 15px;
+                height: $line-height;
                 &_text {
                     font-family: $font;
                     font-style: normal;
                     font-weight: 400;
                     font-size: 12px;
-                    line-height: 15px;
-                    color: #B4B4B4;
+                    line-height: $line-height;
+                    color: $font-color;
                 }
                 &_icon {
                     display: $flex;

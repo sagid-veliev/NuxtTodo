@@ -24,7 +24,7 @@ export default {
         padding: 0;
     }
     .container {
-        display: flex;
+        display: grid;
         width: 1440px;
         background: $theme-color;
         border: 1px solid black;
@@ -34,7 +34,7 @@ export default {
             display: grid;
             grid-template-rows: 35px minmax(900px, auto);
             margin: 32px;
-            grid-gap: 16px;
+            grid-gap: $gap;
         }
     }
     
