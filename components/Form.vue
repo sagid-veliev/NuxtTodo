@@ -35,7 +35,7 @@ export default {
         height: 36px;
         background: #FFFEFB;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
+        border-radius: $radius;
         border: none;
         font-family: $font;
         font-size: 12px;
@@ -56,6 +56,7 @@ export default {
         grid-gap: $gap;
         width: 100%;
         margin: 24px;
+        background-color: #FFFEFB;
         &_name {
             @include block();
             &_label {
@@ -73,7 +74,7 @@ export default {
             &_input {
                 background: #FFFEFB;
                 box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                border-radius: 4px;
+                border-radius: $radius;
                 height: 108px;
                 font-family: $font;
                 font-size: 12px;

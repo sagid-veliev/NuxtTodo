@@ -25,14 +25,14 @@ export default {
     }
     .container {
         display: grid;
-        width: 1440px;
+        // max-width: 1440px;
+        height: 900px;
         background: $theme-color;
-        border: 1px solid black;
         margin: auto;
         box-sizing: border-box;
         &_content {
             display: grid;
-            grid-template-rows: 35px minmax(900px, auto);
+            grid-template-rows: 35px auto;
             margin: 32px;
             grid-gap: $gap;
         }

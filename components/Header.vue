@@ -25,7 +25,6 @@ export default {
         display: $flex;        
         justify-content: space-between;
         height: 100%;
-        border: 1px solid black;
         &_title h1 {
             width: 247px;
             height: 100%;
@@ -42,7 +41,7 @@ export default {
             height: 100%;
             background: #FFFEFB;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
+            border-radius: $radius;
             &_select {
                 display: $flex;
                 flex-direction: row;
