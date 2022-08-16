@@ -34,8 +34,15 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxt/image'
   ],
+
+  image: {
+      cloudinary: {
+        baseURL: 'https://res.cloudinary.com/dxc6m7nbx/image/upload/v1660653535/'
+      }
+  },
 
   styleResources: {
     scss: ['./assets/fonts/*.scss']
