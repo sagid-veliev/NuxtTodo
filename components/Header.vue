@@ -22,7 +22,9 @@ export default {
 
 <style lang="scss" scoped>
     .header {
-        display: $flex;        
+        content: '' ;
+        display: $flex;     
+        width: 100%;
         justify-content: space-between;
         height: 100%;
         &_title h1 {

@@ -25,17 +25,23 @@ export default {
     }
     .container {
         display: grid;
-        // max-width: 1440px;
-        height: 900px;
+        max-width: 1440px;
+        min-height: 900px;
         background: $theme-color;
         margin: auto;
         box-sizing: border-box;
         &_content {
+            height: auto;
             display: grid;
+            z-index: 100;
             grid-template-rows: 35px auto;
             margin: 32px;
             grid-gap: $gap;
         }
     }
+
+    // @media (max-width: 1400px) {
+        
+    // }
     
 </style>
