@@ -1,7 +1,10 @@
 <template>
     <form class="container-form" @submit.prevent="addProduct(name, description, image, price)">
         <div class="container-form_name">
-            <label class="container-form_name_label" for="name">Наименование товара</label>
+            <div class="invalid-wrapper">
+                <label class="container-form_name_label" for="name">Наименование товара</label>
+                <div class="invalid-star"></div>
+            </div>
             <input 
                 v-model.trim="name" 
                 class="container-form_name_input"
@@ -13,7 +16,7 @@
             <small
                 class="invalid-text"
                 v-if="$v.name.$dirty && !$v.name.required"
-            >Поле является обязательным для заполнения</small>
+            >{{ warning }}</small>
         </div>
         <div class="container-form_description">
             <label class="container-form_description_label" for="description">Описание товара</label>
@@ -26,7 +29,11 @@
             ></textarea>
         </div>
         <div class="container-form_image">
-            <label class="container-form_image_label" for="image">Ссылка на изображение товара</label>
+            <div class="invalid-wrapper">
+                <label class="container-form_image_label" for="image">Ссылка на изображение товара</label>
+                <div class="invalid-star"></div>
+
+            </div>
             <input 
                 v-model="image" 
                 class="container-form_image_input" 
@@ -38,10 +45,13 @@
             <small
                 class="invalid-text"
                 v-if="$v.image.$dirty && !$v.image.required"
-            >Поле является обязательным для заполнения</small>
+            >{{ warning }}</small>
         </div>
         <div class="container-form_price">
-            <label class="container-form_price_label" for="name">Цена товара</label>
+            <div class="invalid-wrapper">
+                <label class="container-form_price_label" for="name">Цена товара</label>
+                <div class="invalid-star"></div>        
+            </div>
             <input 
                 v-model="priceMask" 
                 class="container-form_price_input" 
@@ -53,7 +63,7 @@
             <small
                 class="invalid-text"
                 v-if="$v.price.$dirty && !$v.price.required"
-            >Поле является обязательным для заполнения</small>
+            >{{ warning }}</small>
         </div>
         <button type="submit" class="container-form_button" :disabled="$v.$invalid && $v.$error">Добавить товар</button>       
     </form>
@@ -68,7 +78,8 @@ export default {
         name: "",
         description: "",
         image: "",
-        price: ""
+        price: "",
+        warning: "Поле является обязательным"
     }),
     validations: {
         name: {required},
@@ -121,9 +132,10 @@ export default {
         font-size: 12px;
         line-height: $line-height;
         padding: 10px 16px;
-        outline: none;  
+        outline: none; 
+        margin: 4px 0; 
         &:focus {
-            border: 1px solid #a000e0;
+            border: 1px solid #7BAE73;
         } 
         &::placeholder {
             color: $font-color;
@@ -169,7 +181,7 @@ export default {
                 outline: none;   
                 resize: none;
                 &:focus {
-                    border: 1px solid #a000e0;
+                    border: 1px solid #7BAE73;
                 } 
                 &::placeholder {
                     color: $font-color;
@@ -195,7 +207,7 @@ export default {
             }
         }
         &_button {
-            background: #EEEEEE;
+            background: #7BAE73;
             border-radius: 10px;
             border: none;
             font-family: 'Inter';
@@ -205,27 +217,37 @@ export default {
             line-height: $line-height;
             text-align: center;
             letter-spacing: -0.02em;
-            color: $font-color;
+            color: #FFFFFF;
             transition: 0.2s;
             &:hover {
-                background-color: #a000e0;
-                color: #FFFEFB;
+                background-color: #5b8d53;
+                color: #FFFEFF;
                 cursor: pointer;            
             }
             &:disabled {
                 background: #EEEEEE;
                 color: $font-color;
                 cursor: auto;
-                opacity: 0.7;
             }
         }
     }            
     .invalid {
-        border: 1px solid red;
+        border: 1px solid #FF8484;
+        &-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
         &-text {
-            color: red;
+            color: #FF8484;
             font-family: $font;
             font-size: 10px;
+        }
+        &-star {
+            width: 4px;
+            height: 4px;
+            border-radius: 4px;
+            background-color: #FF8484;
         }
     }
 </style>

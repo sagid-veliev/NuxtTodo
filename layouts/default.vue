@@ -33,7 +33,6 @@ export default {
         &_content {
             height: auto;
             display: grid;
-            z-index: 100;
             grid-template-rows: 35px auto;
             margin: 32px;
             grid-gap: $gap;

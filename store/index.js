@@ -10,7 +10,7 @@ export default () => new Vuex.Store({
     },
     mutations: {
         SET_PRODUCT: (state, product) => {
-            state.products.unshift(product);
+            state.products.push(product);
         },
     },
     actions: {

@@ -25,6 +25,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .container-list {
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 332px);
         grid-template-rows: minmax(423px, auto);
@@ -34,12 +35,13 @@ export default {
     @media (max-width: 1400px) {
         .container-list {
             grid-template-columns: repeat(3, 31.3%);
+            
         }
     }
 
     @media (max-width: 1200px) {
         .container-list {
-            grid-template-columns: repeat(2, 46%);
+            grid-template-columns: repeat(2, min(46%));
             justify-content: space-around;
         }
     }
