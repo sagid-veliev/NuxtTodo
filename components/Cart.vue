@@ -82,20 +82,21 @@ export default {
             }
         }
         &_info {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             grid-gap: $gap;
             margin: 16px;
             box-sizing: border-box;
             &_name {  
                 @include info_product(600, 20px, 25px);
-                height: 25px;
             }
             &_description {
                 @include info_product(400, 16px, 20px);
+                margin-bottom: 16px;
             }
             &_price {
                 @include info_product(600, 24px, 30px);
-
+                margin-top: auto;
             }
         }
     }

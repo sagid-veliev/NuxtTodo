@@ -180,6 +180,7 @@ export default {
                 border: none;
                 outline: none;   
                 resize: none;
+                border: 1px solid rgba(0, 0, 0, 0);
                 &:focus {
                     border: 1px solid #7BAE73;
                 } 

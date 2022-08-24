@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -17,6 +16,7 @@ export default () => new Vuex.Store({
         ADD_PRODUCT({commit}, product) {
             commit("SET_PRODUCT", product);
         },
+        // SORT_BY_MAX({commit})
     },
     getters: {
         PRODUCTS(state) {
