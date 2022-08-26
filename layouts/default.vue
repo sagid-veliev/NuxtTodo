@@ -9,10 +9,12 @@
 
 <script>
 import Header from "../components/Header.vue";
-
 export default {
     components: {
         Header
+    },
+    beforeCreate() {
+        this.$store.commit('ASSIGN_STATE');
     }
 }    
 
@@ -39,8 +41,11 @@ export default {
         }
     }
 
-    // @media (max-width: 1400px) {
-        
-    // }
+    @media (max-width: 450px) {
+        .container_content {
+            grid-template-rows: 80px auto; 
+            margin: 8px;
+        }
+    }
     
 </style>

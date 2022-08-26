@@ -1,4 +1,5 @@
 export default {
+  mode: 'ssr',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'idaproject-test',

@@ -6,14 +6,14 @@
         <div style="display: flex; flex-direction:column;">
             <div :class="{ header_select : true, header_select_open : show }" @click="selectAction()">
                 <div class="header_select_wrapper">
-                    <div class="header_select_wrapper_value">По умолчанию</div>
+                    <div class="header_select_wrapper_value">{{ selected }}</div>
                     <div :class="{ header_select_wrapper_icon : true, header_select_wrapper_icon_open : show }"></div>
                 </div>
                 <div v-show="show" class="header_select_options">
                     <div
                         v-for="option in options"
                         class="header_select_options_item"
-                        @click="sortProducts(option.value)"
+                        @click="sortProducts(option)"
                     >
                         <span>{{option.label}}</span>
                     </div>
@@ -33,7 +33,9 @@ export default {
                 {label: "По умолчанию", value: "default"},
                 {label: "По убыванию", value: "min"},
                 {label: "По возрастанию", value: "max"},
-            ]
+                {label: "По наименованию", value: "name"},
+            ],
+            selected: "По умолчанию"
         }
     },
     methods: {
@@ -44,7 +46,8 @@ export default {
             return Number(value.replace(/\s+/g, ''));
         },
         sortProducts(option) {
-            switch (option) {
+            this.selected = option.label;
+            switch (option.value) {
                 case "max": 
                     this.$store.state.products = this.$store.state.products.sort((a, b) => {
                         return this.parsePrice(a.price) - this.parsePrice(b.price);
@@ -54,6 +57,16 @@ export default {
                     this.$store.state.products = this.$store.state.products.sort((a, b) => {
                         return this.parsePrice(b.price) - this.parsePrice(a.price);
                     })
+                    break;
+                case "name":
+                    this.$store.state.products = this.$store.state.products.sort(function (a, b) {
+                        if (a.name > b.name) {
+                            return 1;
+                        } else if (a.name < b.name) {
+                            return -1;
+                        }
+                        return 0;
+                    });
                     break;
             }
         }
@@ -98,8 +111,8 @@ export default {
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                width: 90px;
                 height: $line-height;
+                width: 90px;
                 &_value {
                     font-family: $font;
                     font-style: normal;
@@ -108,6 +121,9 @@ export default {
                     line-height: $line-height;
                     color: $font-color;
                     border: none;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
                 &_icon {
                     display: $flex;
@@ -136,7 +152,6 @@ export default {
                 background: #FFFEFB;
                 box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
                 border-radius: 0 0 4px 4px;
-                transition: all 0.3s ease-out;
                 &_item {
                     width: 100px;
                     text-align: center;
@@ -147,14 +162,24 @@ export default {
                     line-height: 35px;
                     color: $font-color;
                     border: none;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0);
                     &:hover {
                         width: 100%;
-                        background-color: #EEEEEE;
+                        font-weight: 600;
+                        background-color: #f8f8f8;
                         color: #5b8d53;
-                        border-bottom: 1px solid #5b8d53;
                     }
                 }
+            }
+        }
+    }
+
+    @media (max-width: 450px) {
+        .header {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &_select {
+                height: 35px;
             }
         }
     }

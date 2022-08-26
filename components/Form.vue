@@ -108,6 +108,8 @@ export default {
             if (this.$v.$invalid) {
                 return
             } else {
+                //для корректной сортировки по наименованию
+                name = name[0].toUpperCase() + name.slice(1);
                 this.ADD_PRODUCT({name, description, image, price});
                 console.log({ name, description, image, price });
             }

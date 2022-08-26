@@ -7,8 +7,6 @@
                 :description="product.description"
                 :price="product.price"
             />
-            <!-- `/images/image_lqkyvb.jpg` -->
-            <!-- Довольно-таки интересное товара в несколько строк. Довольно-таки интересное описание товара в несколько строк -->
         </template>
     </div>
 </template>
@@ -18,9 +16,22 @@ import Cart from './Cart.vue';
 export default {
     name: "List",
     components: { Cart },
-    computed: mapGetters([
-        "PRODUCTS"
-    ])
+    // data() {
+    //     return {
+    //         products: []
+    //     }
+    // },
+    computed: {
+        ...mapGetters ([
+            "PRODUCTS"
+        ])
+    },
+    // mounted() {
+    //     this.products = localStorage.getItem("products");
+    // },
+    // beforeUpdate() {
+    //     localStorage.setItem("products", JSON.stringify(this.PRODUCTS));
+    // }
 }
 </script>
 <style lang="scss" scoped>
@@ -46,7 +57,7 @@ export default {
         }
     }
 
-     @media (max-width: 700px) {
+    @media (max-width: 700px) {
         .container-list {
             grid-template-columns: 70%;
             justify-content: center;

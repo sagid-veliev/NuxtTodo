@@ -53,6 +53,7 @@ export default {
             transform: scale(1);
         }
     }
+
     .cart {
         display: grid;
         width: 100%;
@@ -60,17 +61,15 @@ export default {
         min-height: 423px;
         background: #FFFEFB;
         border-radius: $radius;
-        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
-        animation: add-cart;
-        animation-duration: 1s;
-        animation-timing-function: ease;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02); 
+        animation: add-cart 1s ease;
+        box-sizing: border-box;
         &_image {
-            position: relative;
             overflow: hidden;
             border-radius: $radius $radius 0 0;
             &-block {
+                position: relative;
                 background-image: cover;
-                position: absolute;
                 z-index: 10;
                 top: 0;
                 bottom: 0;
