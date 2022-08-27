@@ -3,7 +3,7 @@
         <div class="header_title">
             <h1>Добавление товара</h1>
         </div>
-        <div style="display: flex; flex-direction:column;">
+        <div class="header_adaptive">
             <div :class="{ header_select : true, header_select_open : show }" @click="selectAction()">
                 <div class="header_select_wrapper">
                     <div class="header_select_wrapper_value">{{ selected }}</div>
@@ -87,6 +87,10 @@ export default {
             font-weight: 600;
             font-size: 28px;
             color: #3F3F3F;
+        }
+        &_adaptive {
+            display: flex; 
+            flex-direction:column;
         }
         &_select {
             position: relative;
@@ -178,7 +182,11 @@ export default {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            &_adaptive {
+                width: 100%;
+            }
             &_select {
+                width: 100%;
                 height: 35px;
             }
         }

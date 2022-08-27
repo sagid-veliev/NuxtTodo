@@ -17,7 +17,10 @@ const store = new Vuex.Store({
 					Object.assign(state, JSON.parse(localStorage.getItem('products')))
 				);
 			}
-		}
+		},
+        REMOVE_PRODUCT(state, index) {
+            state.products.splice(index, 1);
+        }
     },
     actions: {
         ADD_PRODUCT({commit}, product) {
@@ -25,6 +28,9 @@ const store = new Vuex.Store({
         },
         INIT_STATE({commit}) {
             commit('ASSIGN_STATE');
+        },
+        DELETE_PRODUCT({commit}, index) {
+            commit('REMOVE_PRODUCT', index);
         }
     },
     getters: {

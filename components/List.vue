@@ -1,37 +1,35 @@
 <template>
     <div class="container-list">
-        <template v-for="product in PRODUCTS">
+        <template v-for="(product, index) in PRODUCTS">
             <Cart
                 :path="product.image"
                 :name="product.name"
                 :description="product.description"
                 :price="product.price"
+                @delete="deleteProduct(index)"
             />
         </template>
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Cart from './Cart.vue';
 export default {
     name: "List",
     components: { Cart },
-    // data() {
-    //     return {
-    //         products: []
-    //     }
-    // },
     computed: {
         ...mapGetters ([
             "PRODUCTS"
         ])
     },
-    // mounted() {
-    //     this.products = localStorage.getItem("products");
-    // },
-    // beforeUpdate() {
-    //     localStorage.setItem("products", JSON.stringify(this.PRODUCTS));
-    // }
+    methods: {
+        ...mapActions([
+            'DELETE_PRODUCT'
+        ]),
+        deleteProduct(index) {
+            this.DELETE_PRODUCT(index);
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

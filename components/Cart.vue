@@ -1,10 +1,19 @@
 <template>
     <div class="cart">
+        <div @click="deleteProduct()" class="cart_delete"> 
+            <nuxt-img
+                class="cart_delete_icon"
+                width="16px"
+                heigth="16px"
+                provider="cloudinary"
+                src="/images/delete_1_pokvr2.svg"
+            />
+        </div>
         <div class="cart_image">
             <nuxt-img
+                class="cart_image-block"
                 width="332px"
                 provider="cloudinary"
-                class="cart_image-block"
                 alt="Product image"
                 :src="'' + path"
                 fit="cover"
@@ -31,6 +40,11 @@ export default {
         name: String,
         description: String,
         price: String
+    },
+    methods: {
+        deleteProduct() {
+            this.$emit('delete');
+        }
     }
 }
 </script>
@@ -56,6 +70,7 @@ export default {
 
     .cart {
         display: grid;
+        position: relative;
         width: 100%;
         grid-template-rows: 200px minmax(223px, auto);
         min-height: 423px;
@@ -64,6 +79,30 @@ export default {
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02); 
         animation: add-cart 1s ease;
         box-sizing: border-box;
+        &:hover {
+            cursor: pointer;
+        }
+        &_delete {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            right: -8px;
+            top: -8px;
+            background-color: #FF8484;
+            width: 32px;
+            height: 32px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            &:hover {
+                background-color: #ff6b6b;
+            }
+            &_icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
         &_image {
             overflow: hidden;
             border-radius: $radius $radius 0 0;
