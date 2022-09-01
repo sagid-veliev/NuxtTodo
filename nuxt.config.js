@@ -1,5 +1,4 @@
 export default {
-  mode: 'ssr',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'idaproject-test',
@@ -19,7 +18,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/fonts/font.scss'
+    '~/assets/fonts/style.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

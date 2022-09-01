@@ -1,22 +1,33 @@
 <template>
-    <div class="container-list">
+    <div class="container-list" >
+        <template v-if="showSkeleton">
+            <Skeleton></Skeleton>
+            <Skeleton></Skeleton>
+            <Skeleton></Skeleton>
+        </template>
         <template v-for="(product, index) in PRODUCTS">
-            <Cart
-                :path="product.image"
-                :name="product.name"
-                :description="product.description"
-                :price="product.price"
-                @delete="deleteProduct(index)"
-            />
+            <transition ref="cart" appear name="cart">
+                <Cart
+                    :key="index"
+                    :path="product.image"
+                    :name="product.name"
+                    :description="product.description"
+                    :price="product.price"
+                    @delete="deleteProduct(index)"
+                />
+            </transition>
         </template>
     </div>
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import Cart from './Cart.vue';
 export default {
     name: "List",
-    components: { Cart },
+    data() {
+        return {
+            showSkeleton: true
+        }
+    },
     computed: {
         ...mapGetters ([
             "PRODUCTS"
@@ -29,10 +40,25 @@ export default {
         deleteProduct(index) {
             this.DELETE_PRODUCT(index);
         }
+    },
+    mounted() {
+        this.showSkeleton = false;
     }
 }
 </script>
+
 <style lang="scss" scoped>
+    .cart-enter-active, .cart-leave-active {
+        transition: all .7s;
+    }
+    .cart-enter {
+        transform: translateX(33%);
+        opacity: 0;
+    }
+    .cart-leave-to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
     .container-list {
         width: 100%;
         display: grid;

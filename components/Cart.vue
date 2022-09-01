@@ -1,36 +1,39 @@
 <template>
-    <div class="cart">
-        <div @click="deleteProduct()" class="cart_delete"> 
-            <nuxt-img
-                class="cart_delete_icon"
-                width="16px"
-                heigth="16px"
-                provider="cloudinary"
-                src="/images/delete_1_pokvr2.svg"
-            />
+    <transition name="cart">
+        <div class="cart">
+            <div @click="deleteProduct()" class="cart_delete"> 
+                <nuxt-img
+                    class="cart_delete_icon"
+                    width="16px"
+                    heigth="16px"
+                    provider="cloudinary"
+                    src="/images/delete_1_pokvr2.svg"
+                />
+            </div>
+            <div class="cart_image">
+                <nuxt-img
+                    class="cart_image-block"
+                    width="332px"
+                    provider="cloudinary"
+                    alt=""
+                    :src="'' + path"
+                    fit="cover"
+                    @error="errorImage"
+                />
+            </div>
+            <div class="cart_info">
+                <div class="cart_info_name">
+                    <p>{{ name }}</p>
+                </div>   
+                <div class="cart_info_description">
+                        <p>{{ description }}</p>
+                </div>
+                <div class="cart_info_price">
+                    <p>{{ price }} руб.</p>
+                </div> 
+            </div>               
         </div>
-        <div class="cart_image">
-            <nuxt-img
-                class="cart_image-block"
-                width="332px"
-                provider="cloudinary"
-                alt="Product image"
-                :src="'' + path"
-                fit="cover"
-            />
-        </div>
-        <div class="cart_info">
-            <div class="cart_info_name">
-                <p>{{ name }}</p>
-            </div>   
-            <div class="cart_info_description">
-                <p>{{ description }}</p>
-            </div>  
-            <div class="cart_info_price">
-                <p>{{ price }} руб.</p>
-            </div>                   
-        </div>               
-    </div>
+    </transition>
 </template>
 <script>
 export default {
@@ -44,41 +47,17 @@ export default {
     methods: {
         deleteProduct() {
             this.$emit('delete');
+        },
+        errorImage() {
+            
         }
     }
 }
 </script>
 <style lang="scss" scoped>
-    @mixin info_product($weight, $size, $height) {
-        font-family: $font;
-        font-weight: $weight;
-        font-size: $size;
-        line-height: $height;
-        color: #3F3F3F;
-        background: #FFFEFB;
-        word-break: break-word;
-    }
-
-    @keyframes add-cart {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
+    
     .cart {
-        display: grid;
-        position: relative;
-        width: 100%;
-        grid-template-rows: 200px minmax(223px, auto);
-        min-height: 423px;
-        background: #FFFEFB;
-        border-radius: $radius;
-        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02); 
-        animation: add-cart 1s ease;
-        box-sizing: border-box;
+        @include cart_block();
         &:hover {
             cursor: pointer;
         }
@@ -105,18 +84,9 @@ export default {
         }
         &_image {
             overflow: hidden;
-            border-radius: $radius $radius 0 0;
+            border-radius: 4px 4px 0 0;
             &-block {
-                position: relative;
-                background-image: cover;
-                z-index: 10;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                height: 100%;
-                margin: auto;
+                @include image_block();
             }
         }
         &_info {

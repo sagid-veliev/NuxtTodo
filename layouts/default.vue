@@ -9,9 +9,17 @@
 
 <script>
 import Header from "../components/Header.vue";
+import Cart from "../components/Cart.vue";
+import Form from "../components/Form.vue";
+import List from "../components/List.vue";
+import Skeleton from "../components/Skeleton.vue";
 export default {
     components: {
-        Header
+        Header,
+        Cart,
+        Form,
+        List,
+        Skeleton
     },
     beforeCreate() {
         this.$store.commit('ASSIGN_STATE');

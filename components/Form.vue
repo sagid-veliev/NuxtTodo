@@ -111,7 +111,6 @@ export default {
                 //для корректной сортировки по наименованию
                 name = name[0].toUpperCase() + name.slice(1);
                 this.ADD_PRODUCT({name, description, image, price});
-                console.log({ name, description, image, price });
             }
         }
     }
@@ -126,9 +125,9 @@ export default {
     }
     @mixin input() {
         height: 36px;
-        background: #FFFEFB;
+        background: $theme-color;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: $radius;
+        border-radius: 4px;
         border: none;
         font-family: $font;
         font-size: 12px;
@@ -154,7 +153,7 @@ export default {
         grid-gap: $gap;
         width: 100%;
         margin: 24px;
-        background-color: #FFFEFB;
+        background-color: $theme-color;
         &_name {
             @include block();
             &_label {
@@ -170,10 +169,10 @@ export default {
                @include label();
             }
             &_input {
-                background: #FFFEFB;
+                background: $theme-color;
                 overflow: hidden;
                 box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                border-radius: $radius;
+                border-radius: 4px;
                 height: 108px;
                 font-family: $font;
                 font-size: 12px;
@@ -184,7 +183,7 @@ export default {
                 resize: none;
                 border: 1px solid rgba(0, 0, 0, 0);
                 &:focus {
-                    border: 1px solid #7BAE73;
+                    border: 1px solid #7bae73;
                 } 
                 &::placeholder {
                     color: $font-color;

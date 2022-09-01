@@ -1,10 +1,7 @@
 <template>
     <div class="container-product">
-        <div class="container-product_wrapper">
-            <button @click="showForm()" class="container-product_wrapper_btn">{{ textButton }}</button>
-        </div>
         <div class="container-product_form">
-            <slot v-if="show" сlass="container-product_form_slot" name="form"></slot>
+            <slot сlass="container-product_form_slot" name="form"></slot>
         </div>
         <div class="container-product-list">
             <slot name="list"></slot>
@@ -13,24 +10,7 @@
 </template>
 <script>
 export default {
-    name: "Container",
-    data: () => ({
-        show: false,
-        textButton: "Открыть форму"
-    }),
-    methods: {
-        showForm() {
-            this.show = !this.show;
-            if (this.show) {
-                this.textButton = "Закрыть форму"
-            } else {
-                this.textButton = "Открыть форму"
-            }
-            // const form = document.querySelector('.container-product_form');
-            // form.style.display = 'flex';
-            // this.textButton = "Закрыть форму"
-        }
-    }
+    name: "Container"
 }
 </script>
 <style lang="scss">
@@ -67,9 +47,6 @@ export default {
         }
     }  
     @media (max-width: 700px) {
-        .container-product_form_slot {
-            animation: form_show;   
-        }
 
         .container-product {
             &_wrapper {
@@ -82,8 +59,8 @@ export default {
                     height: 100%;
                     border: none;
                     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                    background: #FFFEFB;
-                    border-radius: $radius;
+                    background: $theme-color;
+                    border-radius: 4px;
                     color: $font-color;
                     font-family: $font;
                     font-style: normal;
