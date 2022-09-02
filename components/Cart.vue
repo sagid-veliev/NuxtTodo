@@ -25,7 +25,7 @@
                     <p>{{ name }}</p>
                 </div>   
                 <div class="cart_info_description">
-                        <p>{{ description }}</p>
+                    <p>{{ description }}</p>
                 </div>
                 <div class="cart_info_price">
                     <p>{{ price }} руб.</p>
