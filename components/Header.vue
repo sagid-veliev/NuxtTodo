@@ -54,16 +54,16 @@ export default {
             }, 500)
             switch (option.value) {
                 case "default":
-                    this.$store.state.products = this.$store.state.productsDefault.slice(0);
-                    break;
-                case "max":
-                    this.$store.state.products = this.$store.state.products.sort((a, b) => {
-                        return this.parsePrice(a.price) - this.parsePrice(b.price);
-                    })
+                    this.$store.state.products = [].concat(this.$store.state.productsDefault);
                     break;
                 case "min":
                     this.$store.state.products = this.$store.state.products.sort((a, b) => {
                         return this.parsePrice(b.price) - this.parsePrice(a.price);
+                    })
+                    break;
+                case "max":
+                    this.$store.state.products = this.$store.state.products.sort((a, b) => {
+                        return this.parsePrice(a.price) - this.parsePrice(b.price);
                     })
                     break;
                 case "name":
@@ -98,6 +98,8 @@ export default {
         font-weight: 600;
         font-size: 28px;
         color: #3F3F3F;
+        word-break: break-all;
+        overflow: hidden;
     }
 
     &_adaptive {

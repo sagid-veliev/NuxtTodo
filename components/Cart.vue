@@ -18,7 +18,6 @@
                     alt=""
                     :src="'' + path"
                     fit="cover"
-                    @error="errorImage"
                 />
             </div>
             <div class="cart_info">
@@ -47,9 +46,6 @@ export default {
     methods: {
         deleteProduct() {
             this.$emit('delete');
-        },
-        errorImage() {
-            
         }
     }
 }

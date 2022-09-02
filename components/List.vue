@@ -5,10 +5,9 @@
             <Skeleton></Skeleton>
             <Skeleton></Skeleton>
         </template>
-        <template v-for="(product, index) in PRODUCTS">
-            <transition ref="cart" appear name="cart">
+        <template>
+            <transition v-for="(product, index) in PRODUCTS" :key="index" appear name="cart">
                 <Cart
-                    :key="index"
                     :path="product.image"
                     :name="product.name"
                     :description="product.description"
@@ -20,7 +19,6 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex';
 export default {
     name: "List",
     data() {
@@ -29,16 +27,13 @@ export default {
         }
     },
     computed: {
-        ...mapGetters ([
-            "PRODUCTS"
-        ])
+        PRODUCTS() {
+            return this.$store.getters.PRODUCTS;
+        }
     },
     methods: {
-        ...mapActions([
-            'DELETE_PRODUCT'
-        ]),
         deleteProduct(index) {
-            this.DELETE_PRODUCT(index);
+            this.$store.dispatch("DELETE_PRODUCT", index);
         }
     },
     mounted() {
@@ -81,7 +76,7 @@ export default {
         }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
         .container-list {
             grid-template-columns: 70%;
             justify-content: center;

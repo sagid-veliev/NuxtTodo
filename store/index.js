@@ -1,53 +1,42 @@
-import Vue from "vue";
-import Vuex from "vuex";
+export const state = () => ({
+    products: [],
+    productsDefault: []    
+})
 
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
-    state: {
-        products: [],
-        productsDefault: []
+export const mutations = {
+    SET_PRODUCT (state, product) {
+        state.products.push(product);
+        state.productsDefault.push(product);
     },
-    mutations: {
-        SET_PRODUCT (state, product) {
-            state.products.push(product);
-            state.productsDefault.push(product);
-        },
-        ASSIGN_STATE(state) {
-			if (process.client && localStorage.getItem('products') !== "undefined") {
-				this.replaceState(
-					Object.assign(state, JSON.parse(localStorage.getItem('products')))
-				);
-                
-			}
-		},
-        REMOVE_PRODUCT(state, index) {
-            state.products.splice(index, 1);
-            state.productsDefault.splice(index, 1);
+    ASSIGN_STATE(state) {
+        if (process.client && localStorage.getItem('products') !== "undefined") {
+            this.replaceState(
+                Object.assign(state, JSON.parse(localStorage.getItem('products')))
+            );
         }
     },
-    actions: {
-        ADD_PRODUCT({commit}, product) {
-            commit("SET_PRODUCT", product);
-        },
-        INIT_STATE({commit}) {
-            commit('ASSIGN_STATE');
-        },
-        DELETE_PRODUCT({commit}, index) {
-            commit('REMOVE_PRODUCT', index);
-        }
-    },
-    getters: {
-        PRODUCTS(state) {
-            return state.products;
-        }
+    REMOVE_PRODUCT(state, index) {
+        state.products.splice(index, 1);
+        state.productsDefault.splice(index, 1);
     }
-});
+}
 
-store.subscribe((mutation, state) => {
-    if(process.client) {
-        localStorage.setItem('products', JSON.stringify(state));
+export const actions = {
+    ADD_PRODUCT({commit}, product) {
+        commit("SET_PRODUCT", product);
+    },
+    INIT_STATE({commit}) {
+        commit('ASSIGN_STATE');
+    },
+    DELETE_PRODUCT({commit}, index) {
+        commit('REMOVE_PRODUCT', index);
     }
-});
+}
 
-export default () => store;
+export const getters = {
+    PRODUCTS(state) {
+        return state.products;
+    }
+}
+
+export const strict = false;

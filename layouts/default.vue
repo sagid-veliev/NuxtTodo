@@ -23,7 +23,17 @@ export default {
     },
     beforeCreate() {
         this.$store.commit('ASSIGN_STATE');
-    }
+    },
+    created() {
+        this.unsubscribe = this.$store.subscribe((mutation, state) => {
+            if(process.client) {
+                localStorage.setItem('products', JSON.stringify(state));
+            }
+        });
+    },
+    beforeDestroy() {
+        this.unsubscribe();
+    },
 }    
 
 </script>
