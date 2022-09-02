@@ -8,25 +8,25 @@
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import Cart from "../components/Cart.vue";
-import Form from "../components/Form.vue";
-import List from "../components/List.vue";
-import Skeleton from "../components/Skeleton.vue";
+import Header from "/components/Header.vue";
+import Cart from "/components/Cart.vue";
+import Form from "/components/Form.vue";
+import List from "/components/List.vue";
+import Skeleton from "/components/Skeleton.vue";
 export default {
     components: {
         Header,
         Cart,
         Form,
         List,
-        Skeleton
+        Skeleton,
     },
     beforeCreate() {
         this.$store.commit("ASSIGN_STATE");
     },
     created() {
         this.unsubscribe = this.$store.subscribe((mutation, state) => {
-            if(process.client) {
+            if (process.client) {
                 localStorage.setItem("products", JSON.stringify(state));
             }
         });
