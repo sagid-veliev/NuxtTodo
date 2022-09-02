@@ -1,72 +1,85 @@
 <template>
-    <div class="container-list">
-        <div class="container-list_item">
-            <div class="container-list_item_image">
-                <nuxt-img
-                    width="332px"
-                    provider="cloudinary"
-                    class="container-list_item_image-block"
-                    alt="Product image"
-                    :src="`/images/image_lqkyvb.jpg`"
-                    fit="cover"
+    <div class="container-list" >
+        <template v-if="showSkeleton">
+            <Skeleton></Skeleton>
+            <Skeleton></Skeleton>
+            <Skeleton></Skeleton>
+        </template>
+        <template>
+            <transition v-for="(product, index) in PRODUCTS" :key="index" appear name="cart">
+                <Cart
+                    :path="product.image"
+                    :name="product.name"
+                    :description="product.description"
+                    :price="product.price"
+                    @delete="deleteProduct(index)"
                 />
-            </div>
-            <div>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-                <p>adssssssssssssssssssss</p>
-            </div>
-            
-        </div>     
+            </transition>
+        </template>
     </div>
 </template>
 <script>
 export default {
-    name: "List"
+    name: "List",
+    data() {
+        return {
+            showSkeleton: true
+        }
+    },
+    computed: {
+        PRODUCTS() {
+            return this.$store.getters.PRODUCTS.slice();
+        }
+    },
+    methods: {
+        deleteProduct(index) {
+            this.$store.dispatch("DELETE_PRODUCT", index);
+        }
+    },
+    mounted() {
+        this.showSkeleton = false;
+    }
 }
 </script>
+
 <style lang="scss" scoped>
+    .cart-enter-active, .cart-leave-active {
+        transition: all .7s;
+    }
+    .cart-enter {
+        transform: translateX(33%);
+        opacity: 0;
+    }
+    .cart-leave-to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
     .container-list {
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 332px);
-        grid-template-rows: min(423px);
+        grid-template-rows: minmax(423px, auto);
         grid-gap: $gap;
-        border: 1px solid black;
-        &_item {
-            display: grid;
-            grid-template-rows: 200px min(223px);
-            min-height: 423px;
-            background: #FFFEFB;
-            box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
-            border-radius: 4px;
-            &_image {
-                height: 200px;
-                position: relative;
-                overflow: hidden;
-                &-block {
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    max-width: 100%;
-                    max-height: 100%;
-                    margin: auto;
-                }
-            }
+    }
+
+    @media (max-width: 1400px) {
+        .container-list {
+            grid-template-columns: repeat(3, 31.3%);
+            
         }
-        
+    }
+
+    @media (max-width: 1200px) {
+        .container-list {
+            grid-template-columns: repeat(2, min(46%));
+            justify-content: space-around;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .container-list {
+            grid-template-columns: 70%;
+            justify-content: center;
+        }
     }
 </style>
