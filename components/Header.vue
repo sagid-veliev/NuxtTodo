@@ -43,7 +43,7 @@ export default {
         },
         sortProducts(option) {
             this.selected = option.label;
-            const cartNode = document.querySelectorAll('.cart');
+            const cartNode = document.querySelectorAll(".cart");
             cartNode.forEach((el) => {
                 el.classList.add("animate");
             })
@@ -57,17 +57,17 @@ export default {
                     this.$store.state.products = [].concat(this.$store.state.productsDefault);
                     break;
                 case "min":
-                    this.$store.state.products = this.$store.state.products.sort((a, b) => {
+                    this.$store.state.products = [].concat(this.$store.state.products).sort((a, b) => {
                         return this.parsePrice(b.price) - this.parsePrice(a.price);
                     })
                     break;
                 case "max":
-                    this.$store.state.products = this.$store.state.products.sort((a, b) => {
+                    this.$store.state.products = [].concat(this.$store.state.products).sort((a, b) => {
                         return this.parsePrice(a.price) - this.parsePrice(b.price);
                     })
                     break;
                 case "name":
-                    this.$store.state.products = this.$store.state.products.sort(function (a, b) {
+                    this.$store.state.products = [].concat(this.$store.state.products).sort(function (a, b) {
                         if (a.name > b.name) {
                             return 1;
                         } else if (a.name < b.name) {

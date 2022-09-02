@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         PRODUCTS() {
-            return this.$store.getters.PRODUCTS;
+            return this.$store.getters.PRODUCTS.slice();
         }
     },
     methods: {

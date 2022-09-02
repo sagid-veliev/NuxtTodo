@@ -92,8 +92,8 @@ export default {
                 return this.price;
             },
             set(value) {
-                this.price = value.replace(/\s+/g, '').split('').map((num, i, arr) => {
-                    return (arr.length - 1 - i) % 3 === 0 && i !== arr.length - 1 ? num + ' ': num
+                this.price = value.replace(/\s+/g, "").split("").map((num, i, arr) => {
+                    return (arr.length - 1 - i) % 3 === 0 && i !== arr.length - 1 ? num + " ": num
                 })
                 .join('');
             }  
@@ -101,7 +101,7 @@ export default {
     },
     methods: {
         ...mapActions([
-            'ADD_PRODUCT'
+            "ADD_PRODUCT"
         ]),
         addProduct(name, description, image, price) {
             this.$v.$touch();

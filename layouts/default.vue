@@ -22,12 +22,12 @@ export default {
         Skeleton
     },
     beforeCreate() {
-        this.$store.commit('ASSIGN_STATE');
+        this.$store.commit("ASSIGN_STATE");
     },
     created() {
         this.unsubscribe = this.$store.subscribe((mutation, state) => {
             if(process.client) {
-                localStorage.setItem('products', JSON.stringify(state));
+                localStorage.setItem("products", JSON.stringify(state));
             }
         });
     },

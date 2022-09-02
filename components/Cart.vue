@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         deleteProduct() {
-            this.$emit('delete');
+            this.$emit("delete");
         }
     }
 }
