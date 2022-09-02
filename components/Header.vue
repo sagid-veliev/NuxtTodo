@@ -10,7 +10,7 @@
                     <div :class="{ header_select_wrapper_icon: true, header_select_wrapper_icon_open: show }"></div>
                 </div>
                 <div v-show="show" class="header_select_options">
-                    <div v-for="option in options" class="header_select_options_item" :key="option.value" @click="sortProducts(option)">
+                    <div v-for="option in options" class="header_select_options_item" :key="option.value" @click.capture="sortProducts(option)">
                         <span>{{ option.label }}</span>
                     </div>
                 </div>
@@ -52,6 +52,9 @@ export default {
                     el.classList.remove("animate");
                 })
             }, 500)
+            this.switchProducts(option.value);
+        },
+        switchProducts(option) {
             switch (option.value) {
                 case "default":
                     this.$store.state.products = [].concat(this.$store.state.productsDefault);
@@ -67,7 +70,7 @@ export default {
                     })
                     break;
                 case "name":
-                    this.$store.state.products = [].concat(this.$store.state.products).sort(function (a, b) {
+                    this.$store.state.products = [].concat(this.$store.state.products).sort((a, b) => {
                         if (a.name > b.name) {
                             return 1;
                         } else if (a.name < b.name) {
