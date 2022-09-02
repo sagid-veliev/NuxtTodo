@@ -79,7 +79,7 @@ export default {
         description: "",
         image: "",
         price: "",
-        warning: "Поле является обязательным"
+        warning: "Поле является обязательным",
     }),
     validations: {
         name: {required},
