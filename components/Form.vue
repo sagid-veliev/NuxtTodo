@@ -70,7 +70,6 @@
 </template>
 <script>
 import { required } from 'vuelidate/lib/validators';
-import { mapActions } from 'vuex';
 
 export default {
     name: "Form",
@@ -100,9 +99,6 @@ export default {
         }
     },
     methods: {
-        ...mapActions([
-            "ADD_PRODUCT"
-        ]),
         addProduct(name, description, image, price) {
             this.$v.$touch();
             if (this.$v.$invalid) {
@@ -110,13 +106,22 @@ export default {
             } else {
                 //для корректной сортировки по наименованию
                 name = name[0].toUpperCase() + name.slice(1);
-                this.ADD_PRODUCT({name, description, image, price});
+                this.$store.dispatch("ADD_PRODUCT", {name, description, image, price});
             }
         }
     }
 }
 </script>
 <style lang="scss" scoped>
+    @keyframes validation {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
     @mixin label() {
         font-family: $font;
         font-size: 10px;
@@ -244,6 +249,7 @@ export default {
             color: #FF8484;
             font-family: $font;
             font-size: 10px;
+            animation: validation .7s;
         }
         &-star {
             width: 4px;

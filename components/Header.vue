@@ -10,7 +10,8 @@
                     <div :class="{ header_select_wrapper_icon: true, header_select_wrapper_icon_open: show }"></div>
                 </div>
                 <div v-show="show" class="header_select_options">
-                    <div v-for="option in options" class="header_select_options_item" :key="option.value" @click="sortProducts(option)">
+                    <div v-for="option in options" class="header_select_options_item" :key="option.value"
+                        @click="sortProducts(option)">
                         <span>{{ option.label }}</span>
                     </div>
                 </div>
@@ -22,18 +23,16 @@
 <script>
 export default {
     name: "Header",
-    data() {
-        return {
-            show: false,
-            options: [
-                { label: "По умолчанию", value: "default" },
-                { label: "По убыванию", value: "min" },
-                { label: "По возрастанию", value: "max" },
-                { label: "По наименованию", value: "name" },
-            ],
-            selected: "По умолчанию"
-        }
-    },
+    data: () => ({
+        show: false,
+        options: [
+            { label: "По умолчанию", value: "default" },
+            { label: "По убыванию", value: "min" },
+            { label: "По возрастанию", value: "max" },
+            { label: "По наименованию", value: "name" },
+        ],
+        selected: "По умолчанию"
+    }),
     methods: {
         selectAction() {
             this.show = !this.show;
@@ -44,18 +43,14 @@ export default {
         sortProducts(option) {
             this.selected = option.label;
             const cartNode = document.querySelectorAll(".cart");
-            cartNode.forEach((el) => {
-                el.classList.add("animate");
-            })
+            cartNode.forEach(el => el.classList.add("animate"));
             setTimeout(() => {
-                cartNode.forEach((el) => {
-                    el.classList.remove("animate");
-                })
+                cartNode.forEach(el => el.classList.remove("animate"));
             }, 500)
             this.switchProducts(option.value);
         },
         switchProducts(option) {
-            switch (option.value) {
+            switch (option) {
                 case "default":
                     this.$store.state.products = [].concat(this.$store.state.productsDefault);
                     break;
@@ -86,13 +81,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes select {
+    0% {
+        line-height: 0px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        line-height: 35px;
+    }
+}
 
 .header {
     display: flex;
     width: 100%;
     justify-content: space-between;
     height: 100%;
-
+    user-select: none;
     &_title h1 {
         width: 247px;
         height: 100%;
@@ -161,7 +167,7 @@ export default {
                 border-right: $select-icon;
                 transform: rotate(45deg);
                 box-sizing: border-box;
-                transition: 0.5s;
+                transition: 0.5s ease-in;
 
                 &_open {
                     transform: rotate(-135deg);
@@ -180,6 +186,7 @@ export default {
             background: $theme-color;
             box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
             border-radius: 0 0 4px 4px;
+            box-sizing: border-box;
 
             &_item {
                 width: 100px;
@@ -191,6 +198,7 @@ export default {
                 line-height: 35px;
                 color: $font-color;
                 border: none;
+                animation: select .2s linear;
 
                 &:hover {
                     width: 100%;
@@ -199,6 +207,7 @@ export default {
                     color: #5b8d53;
                 }
             }
+
         }
     }
 }
