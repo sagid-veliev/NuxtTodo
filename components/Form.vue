@@ -70,7 +70,7 @@
 </template>
 <script>
 import { required } from 'vuelidate/lib/validators';
-
+import { mapActions } from 'vuex';
 export default {
     name: "Form",
     data: () => ({
@@ -83,7 +83,7 @@ export default {
     validations: {
         name: {required},
         image: {required},
-        price: {required}
+        price: {required},
     },
     computed: {
        priceMask: {
@@ -96,9 +96,12 @@ export default {
                 })
                 .join('');
             }  
-        }
+        },
     },
     methods: {
+        ...mapActions([
+            "ADD_PRODUCT"
+        ]),
         addProduct(name, description, image, price) {
             this.$v.$touch();
             if (this.$v.$invalid) {
@@ -106,9 +109,9 @@ export default {
             } else {
                 //для корректной сортировки по наименованию
                 name = name[0].toUpperCase() + name.slice(1);
-                this.$store.dispatch("ADD_PRODUCT", {name, description, image, price});
+                this.ADD_PRODUCT({name, description, image, price});
             }
-        }
+        },
     }
 }
 </script>
@@ -133,7 +136,7 @@ export default {
         background: $theme-color;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
-        border: none;
+        border: 1px solid rgba(0, 0, 0, 0);
         font-family: $font;
         font-size: 12px;
         line-height: $line-height;

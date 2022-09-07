@@ -3,17 +3,15 @@
         <div class="header_title">
             <h1>Добавление товара</h1>
         </div>
-        <div class="header_adaptive">
-            <div :class="{ header_select: true, header_select_open: show }" @click="selectAction()">
-                <div class="header_select_wrapper">
-                    <div class="header_select_wrapper_value">{{ selected }}</div>
-                    <div :class="{ header_select_wrapper_icon: true, header_select_wrapper_icon_open: show }"></div>
-                </div>
-                <div v-show="show" class="header_select_options">
-                    <div v-for="option in options" class="header_select_options_item" :key="option.value"
-                        @click="sortProducts(option)">
-                        <span>{{ option.label }}</span>
-                    </div>
+        <div :class="{ header_select: true, header_select_open: show }" @click="selectAction">
+            <div class="header_select_wrapper">
+                <div class="header_select_wrapper_value">{{ selected }}</div>
+                <div :class="{ header_select_wrapper_icon: true, header_select_wrapper_icon_open: show }"></div>
+            </div>
+            <div v-show="show" class="header_select_options">
+                <div v-for="option in options" class="header_select_options_item" :key="option.value"
+                    @click="sortProducts(option)">
+                    <span>{{ option.label }}</span>
                 </div>
             </div>
         </div>
@@ -23,16 +21,18 @@
 <script>
 export default {
     name: "Header",
-    data: () => ({
-        show: false,
-        options: [
-            { label: "По умолчанию", value: "default" },
-            { label: "По убыванию", value: "min" },
-            { label: "По возрастанию", value: "max" },
-            { label: "По наименованию", value: "name" },
-        ],
-        selected: "По умолчанию"
-    }),
+    data() {
+        return {
+            show: false,
+            options: [
+                { label: "По умолчанию", value: "default" },
+                { label: "По убыванию", value: "min" },
+                { label: "По возрастанию", value: "max" },
+                { label: "По наименованию", value: "name" },
+            ],
+            selected: "По умолчанию",
+        }
+    },
     methods: {
         selectAction() {
             this.show = !this.show;
@@ -110,11 +110,6 @@ export default {
         overflow: hidden;
     }
 
-    &_adaptive {
-        display: flex;
-        flex-direction: column;
-    }
-
     &_select {
         position: relative;
         z-index: 2000;
@@ -128,7 +123,6 @@ export default {
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         box-sizing: border-box;
-
         &:hover {
             cursor: pointer;
         }
