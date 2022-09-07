@@ -10,7 +10,7 @@
 <script>
 export default {
     data: () => ({
-        unsubscribe: null
+        unsubscribe: null,
     }),
     beforeCreate() {
         this.$store.commit("ASSIGN_STATE");
