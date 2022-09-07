@@ -44,8 +44,7 @@ export default {
     @include cart_block();
     &:hover {
         cursor: pointer;
-        transform: translateY(-5px);
-        box-shadow: 0px 25px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 25px 30px rgba(0, 0, 0, 0.1);
     }
 
     &_delete {
