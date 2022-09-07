@@ -14,21 +14,26 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
     name: "List",
     data() {
         return {
-            showSkeleton: true
+            showSkeleton: true,
         }
     },
     computed: {
-        PRODUCTS() {
-            return this.$store.getters.PRODUCTS.slice();
-        }
+        ...mapGetters([
+            "PRODUCTS",
+        ])
     },
     methods: {
+        ...mapActions([
+            "DELETE_PRODUCT",
+        ]),
         deleteProduct(index) {
-            this.$store.dispatch("DELETE_PRODUCT", index);
+            this.DELETE_PRODUCT(index);
         }
     },
     mounted() {

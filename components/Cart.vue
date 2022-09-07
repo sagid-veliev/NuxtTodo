@@ -5,7 +5,7 @@
                 src="/images/delete_1_pokvr2.svg" />
         </div>
         <div class="cart_image">
-            <nuxt-img class="cart_image-block" width="332px" provider="cloudinary" alt="" :src="'' + path"
+            <nuxt-img class="cart_image-block" width="332px" provider="cloudinary" alt="" :src="path"
                 fit="cover" />
         </div>
         <div class="cart_info">
@@ -29,12 +29,12 @@ export default {
         path: String,
         name: String,
         description: String,
-        price: String
+        price: String,
     },
     methods: {
         deleteProduct() {
             this.$emit("delete");
-        }
+        },
     }
 }
 </script>
@@ -42,9 +42,10 @@ export default {
 <style lang="scss" scoped>
 .cart {
     @include cart_block();
-
     &:hover {
         cursor: pointer;
+        transform: translateY(-5px);
+        box-shadow: 0px 25px 30px rgba(0, 0, 0, 0.15);
     }
 
     &_delete {
