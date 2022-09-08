@@ -1,22 +1,30 @@
 <template>
-    <Container>
+    <TheContainer>
         <template #form>
             <div class="form">
-                <Form />
+                <TheForm />
             </div>
         </template>
         <template #list>
             <div class="list">
-                <List />
+                <VSkeletonList v-if="showSkeleton" />
+                <VList v-else/>
             </div>
         </template>
-    </Container>
+    </TheContainer>
 </template>
 
 <script>
 export default {
     name: "IndexPage",
-    layout: "default"
+    mounted() {
+        this.showSkeleton = false;
+    },
+    data() {
+        return {
+            showSkeleton: true
+        }
+    },
 }
 </script>
 
@@ -34,5 +42,6 @@ export default {
     display: flex;
     width: 100%;
     height: auto;
+    gap: 16px;
 }
 </style>

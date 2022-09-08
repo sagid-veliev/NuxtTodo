@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
+    <div class="container" @click.capture="closeOptions">
         <div class="container_content">
-            <Header />
+            <TheHeader :show="hideOptions"/>
             <Nuxt />
         </div>
     </div>
@@ -10,8 +10,14 @@
 <script>
 export default {
     data: () => ({
+        hideOptions: false,
         unsubscribe: null,
     }),
+    methods: {
+        closeOptions() {
+            this.hideOptions = true;
+        }
+    },
     beforeCreate() {
         this.$store.commit("ASSIGN_STATE");
     },

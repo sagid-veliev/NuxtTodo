@@ -3,7 +3,6 @@
         <div class="skeleton_image"></div>
         <div class="skeleton_info">
             <div class="skeleton_info_name"></div>
-            <div class="skeleton_info_description"></div>
             <div class="skeleton_info_price"></div>
         </div>
     </div>
@@ -30,7 +29,7 @@ export default {
     &_image {
         overflow: hidden;
         border-radius: 4px 4px 0 0;
-        animation: skeleton-loading 1s linear infinite alternate;
+        animation: $skeleton;
 
         &-block {
             @include image_block();
@@ -45,20 +44,20 @@ export default {
         box-sizing: border-box;
 
         &_name {
-            animation: skeleton-loading 1s linear infinite alternate;
             @include info_product(600, 20px, 25px);
-        }
-
-        &_description {
-            @include info_product(400, 16px, 20px);
-            margin-bottom: 16px;
-            animation: skeleton-loading 1s linear infinite alternate;
+            width: 100%;
+            height: 25px;
+            animation: $skeleton;
+            border-radius: 4px;
         }
 
         &_price {
             @include info_product(600, 24px, 30px);
+            width: 100%;
+            height: 30px;
             margin-top: auto;
-            animation: skeleton-loading 1s linear infinite alternate;
+            border-radius: 4px;
+            animation: $skeleton;
         }
     }
 }

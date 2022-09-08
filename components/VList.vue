@@ -1,16 +1,14 @@
 <template>
     <div class="container-list">
-        <template v-if="showSkeleton">
-            <Skeleton></Skeleton>
-            <Skeleton></Skeleton>
-            <Skeleton></Skeleton>
-        </template> 
-        <template>
-            <Transition v-for="(product, index) in PRODUCTS" :key="index" appear name="cart" tag="template">
-                <Cart :path="product.image" :name="product.name" :description="product.description"
-                    :price="product.price" @delete="deleteProduct(index)" />
-            </Transition>
-        </template>
+        <Transition v-for="(product, index) in PRODUCTS" :key="index" appear name="cart" tag="template">
+            <VCart 
+                :path="product.image" 
+                :name="product.name" 
+                :description="product.description"
+                :price="product.price" 
+                @delete="deleteProduct(index)" 
+            />
+        </Transition>
     </div>
 </template>
 <script>
@@ -36,9 +34,6 @@ export default {
             this.DELETE_PRODUCT(index);
         }
     },
-    mounted() {
-        this.showSkeleton = false;
-    }
 }
 </script>
 
@@ -59,11 +54,7 @@ export default {
 }
 
 .container-list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 332px);
-    grid-template-rows: minmax(423px, auto);
-    grid-gap: $gap;
+    @include container_list;
 }
 
 @media (max-width: 1400px) {

@@ -1,12 +1,23 @@
 <template>
     <div class="cart">
         <div @click="deleteProduct()" class="cart_delete">
-            <nuxt-img class="cart_delete_icon" width="16px" heigth="16px" provider="cloudinary"
-                src="/images/delete_1_pokvr2.svg" />
+            <nuxt-img 
+                class="cart_delete_icon" 
+                width="16px" 
+                heigth="16px" 
+                provider="cloudinary"
+                src="/images/delete_1_pokvr2.svg" 
+            />
         </div>
         <div class="cart_image">
-            <nuxt-img class="cart_image-block" width="332px" provider="cloudinary" alt="" :src="path"
-                fit="cover" />
+            <nuxt-img 
+                class="cart_image-block" 
+                width="332px" 
+                provider="cloudinary" 
+                alt="" 
+                :src="path"
+                fit="cover" 
+            />
         </div>
         <div class="cart_info">
             <div class="cart_info_name">
