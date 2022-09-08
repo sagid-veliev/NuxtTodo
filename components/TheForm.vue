@@ -32,10 +32,9 @@
             <div class="invalid-wrapper">
                 <label class="container-form_image_label" for="image">Ссылка на изображение товара</label>
                 <div class="invalid-star"></div>
-
             </div>
             <input 
-                v-model="image" 
+                v-model.trim="image" 
                 class="container-form_image_input" 
                 :class="{ invalid: $v.image.$dirty && !$v.image.required }"
                 type="text" 
@@ -56,7 +55,7 @@
                 v-model="priceMask" 
                 class="container-form_price_input" 
                 type="text"
-                :class="{ invalid: $v.price.$dirty && !$v.price.required}"
+                :class="{ invalid: $v.price.$dirty && !$v.price.required }"
                 name="product-price" 
                 placeholder="Введите цену"
             >

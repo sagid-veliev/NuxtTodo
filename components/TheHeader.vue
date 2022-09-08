@@ -9,7 +9,10 @@
                 <div :class="{ header_select_wrapper_icon: true, header_select_wrapper_icon_open: show }"></div>
             </div>
             <div v-show="show" class="header_select_options">
-                <div v-for="option in options" class="header_select_options_item" :key="option.value"
+                <div 
+                    class="header_select_options_item"
+                    v-for="option in options"  
+                    :key="option.value"
                     @click="sortProducts(option)">
                     <span>{{ option.label }}</span>
                 </div>

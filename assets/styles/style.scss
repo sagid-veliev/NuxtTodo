@@ -63,6 +63,14 @@
     margin: auto;
 }
 
+@mixin container_list() {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 332px);
+    grid-template-rows: minmax(423px, auto);
+    grid-gap: $gap;
+}
+
 //анимация применяемая при сортировке списка
 @keyframes sort{
     0% {
@@ -85,3 +93,4 @@ $font-color: #B4B4B4;
 $select-icon: 1px solid;
 $gap: 16px; 
 $line-height: 15px;
+$skeleton: skeleton-loading 1s linear infinite alternate;
