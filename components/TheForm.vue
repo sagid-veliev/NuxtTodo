@@ -68,6 +68,7 @@
     </form>
 </template>
 <script>
+const formatter = new Intl.NumberFormat("ru");
 import { required } from 'vuelidate/lib/validators';
 import { mapActions } from 'vuex';
 export default {
@@ -80,9 +81,9 @@ export default {
         warning: "Поле является обязательным",
     }),
     validations: {
-        name: {required},
-        image: {required},
-        price: {required},
+        name: { required },
+        image: { required },
+        price: { required },
     },
     computed: {
        priceMask: {
@@ -90,10 +91,8 @@ export default {
                 return this.price;
             },
             set(value) {
-                this.price = value.replace(/\s+/g, "").split("").map((num, i, arr) => {
-                    return (arr.length - 1 - i) % 3 === 0 && i !== arr.length - 1 ? num + " ": num
-                })
-                .join('');
+                value = value.replace(/[^\d]/g, "");
+                this.price = formatter.format(value);
             }  
         },
     },
