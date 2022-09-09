@@ -1,7 +1,7 @@
 <template>
-    <div class="container" @click.capture="closeOptions">
+    <div class="container" @click="closeOptions">
         <div class="container_content">
-            <TheHeader :show="hideOptions"/>
+            <TheHeader ref="header" />
             <Nuxt />
         </div>
     </div>
@@ -10,13 +10,15 @@
 <script>
 export default {
     data: () => ({
-        hideOptions: false,
         unsubscribe: null,
     }),
     methods: {
         closeOptions() {
-            this.hideOptions = true;
-        }
+            if (this.$refs.header.show) {
+                // таймаут повешен на случай закрытия опций кликом по самому селекту (в TheHeader.vue описана логика)
+                setTimeout(() => this.$refs.header.show = false);  
+            } 
+        },
     },
     beforeCreate() {
         this.$store.commit("ASSIGN_STATE");
