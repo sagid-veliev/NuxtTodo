@@ -3,7 +3,7 @@
         <div class="header_title">
             <h1>Добавление товара</h1>
         </div>
-        <div :class="{ header_select: true, header_select_open: show }" @click="selectAction">
+        <div :class="{ header_select: true, header_select_open: show }" @click="toggleOptions">
             <div class="header_select_wrapper">
                 <div class="header_select_wrapper_value">{{ selected }}</div>
                 <div :class="{ header_select_wrapper_icon: true, header_select_wrapper_icon_open: show }"></div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
     name: "Header",
     data() {
@@ -37,8 +38,14 @@ export default {
         }
     },
     methods: {
-        selectAction() {
-            this.show = !this.show;
+        toggleOptions() {
+            // открытия селекта
+            // toggleOptions(Timeout) -> closeOptions(не пройден if) -> toggleOptions(show = true) = селект открылся
+            // закрытие селекта
+            // toggleOptions(timeout) -> closeOptions(timeout) -> toggleOptions(show = false) -> closeOptions(не пройдет if) = селект закрылся
+            setTimeout(() => {
+                this.show = !this.show;
+            })
         },
         parsePrice(value) {
             return Number(value.replace(/\s+/g, ''));
