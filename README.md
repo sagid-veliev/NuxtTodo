@@ -1,4 +1,4 @@
-# idaproject-test
+# NuxtTodo
 
 ## Build Setup
 
